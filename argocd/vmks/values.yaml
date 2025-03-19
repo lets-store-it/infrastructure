@@ -1,0 +1,20 @@
+---
+victoria-metrics-operator:
+  createCRD: true
+  admissionWebhooks:
+    certManager:
+      enabled: true
+
+defaultDashboards:
+  defaultTimezone: Europe/Moscow
+
+grafana:
+  adminPassword: password
+
+vmsingle:
+  spec:
+    storage:
+      resources:
+        requests:
+          torage: 3Gi
+      storageClassName: csi-ceph-ssd-me1

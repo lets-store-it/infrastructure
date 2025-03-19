@@ -1,0 +1,18 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: storeit
+  project: default
+  sources:
+    - repoURL: https://github.com/lets-store-it/infrastructure.git
+      path: argocd/backend
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

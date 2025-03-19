@@ -1,0 +1,37 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vmks
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  project: default
+  sources:
+    - chart: victoria-metrics-k8s-stack
+      helm:
+        valueFiles:
+          - $values/argocd/vmks/values.yaml
+      repoURL: https://victoriametrics.github.io/helm-charts/
+      targetRevision: 0.28.4
+    - repoURL: https://github.com/lets-store-it/infrastructure.git
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: vmks-victoria-metrics-operator-validation
+      namespace: 
+      jsonPointers:
+        - /data
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      name: vmks-victoria-metrics-operator-admission
+      jqPathExpressions:
+        - ".webhooks[]?.clientConfig.caBundle"

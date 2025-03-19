@@ -1,0 +1,24 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudnative-pg-operator
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: operators
+  project: default
+  sources:
+    - repoURL: https://github.com/lets-store-it/infrastructure.git
+      ref: values
+    - chart: cloudnative-pg
+      targetRevision: 0.23.0
+      repoURL: https://cloudnative-pg.github.io/charts
+      helm:
+        valueFiles:
+          - $values/argocd/cloudnative-pg-operator/values.yaml
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
