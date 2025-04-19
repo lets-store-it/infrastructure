@@ -18,6 +18,8 @@ spec:
       targetRevision: 0.28.4
     - repoURL: https://github.com/lets-store-it/infrastructure.git
       ref: values
+    - repoURL: https://github.com/lets-store-it/infrastructure.git
+      ref: vmks/manifests
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
