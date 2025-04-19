@@ -19,7 +19,7 @@ spec:
     - repoURL: https://github.com/lets-store-it/infrastructure.git
       ref: values
     - repoURL: https://github.com/lets-store-it/infrastructure.git
-      ref: vmks/manifests
+      path: argocd/vmks/manifests
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
