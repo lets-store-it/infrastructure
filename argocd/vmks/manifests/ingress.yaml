@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vmks
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: grafana.store-it.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vmks-grafana
+                port:
+                  name: service
