@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: monitoring
+  project: default
+  sources:
+    - chart: tempo
+      helm:
+        valueFiles:
+          - $values/argocd/tempo/values.yaml
+      repoURL: https://grafana.github.io/helm-charts/
+      targetRevision: 1.21.0
+    - repoURL: https://github.com/lets-store-it/infrastructure.git
+      ref: values
+    - repoURL: https://github.com/lets-store-it/infrastructure.git
+      path: argocd/tempo/manifests
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true

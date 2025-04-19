@@ -1,0 +1,6 @@
+persistence:
+  enabled: true
+  storageClassName: csi-ceph-ssd-me1
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
