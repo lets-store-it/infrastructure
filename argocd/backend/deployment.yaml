@@ -15,6 +15,7 @@ spec:
       containers:
         - name: backend
           image: ghcr.io/lets-store-it/backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           resources:
@@ -24,15 +25,14 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "200m"
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 8080
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 10
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 3000
-          #   initialDelaySeconds: 15
-          #   periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 8080
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 8080
+          envFrom:
+            - secretRef:
+                name: backend-config
