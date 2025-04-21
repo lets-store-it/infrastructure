@@ -2,14 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: backend
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
     - host: api.store-it.ru
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: (/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: backend
