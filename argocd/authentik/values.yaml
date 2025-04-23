@@ -9,6 +9,7 @@ server:
     enabled: true
     hosts:
       - authentik.store-it.ru
+    https: true
 
 postgresql:
   enabled: true
@@ -24,6 +25,5 @@ postgresql:
 
 redis:
   enabled: true
-  master:
-    persistence:
-      storageClass: csi-ceph-ssd-me1
+  global:
+    storageClass: csi-ceph-ssd-me1
