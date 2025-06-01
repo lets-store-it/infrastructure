@@ -16,7 +16,7 @@ service:
   labels: {}
 
 tempo:
-  retention: "168h" # 7 days, increase if you need longer retention
+  retention: "168h"
 
   receivers:
     otlp:
