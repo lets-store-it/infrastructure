@@ -15,9 +15,9 @@ spec:
     - chart: strimzi-kafka-operator
       targetRevision: 0.46.0
       repoURL: https://strimzi.io/charts
-      helm:
-        valueFiles:
-          - $values/argocd/strimzi-operator/values.yaml
+      # helm:
+      #   valueFiles:
+      #     - $values/argocd/strimzi-operator/values.yaml
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
