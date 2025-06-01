@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        kubernetes.io/name: storeit
+        app.kubernetes.io/name: storeit
         app.kubernetes.io/component: backend
     spec:
       containers:
