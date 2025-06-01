@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudnative-pg-operator
+  name: strimzi-operator
   namespace: argocd
 spec:
   destination:
