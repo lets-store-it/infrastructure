@@ -7,3 +7,48 @@ persistence:
 
 tempoQuery:
   enabled: true
+  service:
+    port: 16686
+
+service:
+  type: ClusterIP
+  annotations: {}
+  labels: {}
+
+tempo:
+  retention: "168h" # 7 days, increase if you need longer retention
+
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:4317"
+        http:
+          endpoint: "0.0.0.0:4318"
+    jaeger:
+      protocols:
+        grpc:
+          endpoint: "0.0.0.0:14250"
+        thrift_http:
+          endpoint: "0.0.0.0:14268"
+
+  storage:
+    trace:
+      backend: local
+      local:
+        path: /var/tempo/traces
+      wal:
+        path: /var/tempo/wal
+
+  server:
+    http_listen_port: 3100
+
+  reportingEnabled: true
+
+  resources:
+    limits:
+      cpu: 200m
+      memory: 250Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
