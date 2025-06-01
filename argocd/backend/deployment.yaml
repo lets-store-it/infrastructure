@@ -39,3 +39,6 @@ spec:
           envFrom:
             - secretRef:
                 name: backend-config
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://tempo.monitoring.svc.cluster.local:4317
