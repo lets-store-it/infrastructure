@@ -22,3 +22,4 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+    automated: {}

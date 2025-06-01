@@ -25,6 +25,7 @@ spec:
       - ServerSideApply=true
       - RespectIgnoreDifferences=true
       - CreateNamespace=true
+    automated: {}
   ignoreDifferences:
     - group: ""
       kind: Secret

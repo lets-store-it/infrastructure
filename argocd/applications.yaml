@@ -11,6 +11,10 @@ spec:
   sources:
     - path: argocd/applications
       repoURL: https://github.com/lets-store-it/infrastructure.git
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - ServerSideApply=true
 
 ---
 apiVersion: networking.k8s.io/v1
