@@ -3,13 +3,13 @@ kind: Cluster
 metadata:
   name: storeit-pg
 spec:
-  instances: 3
+  instances: 1
   storage:
-    size: 1Gi
+    size: 2Gi
     pvcTemplate:
       accessModes:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 1Gi
+          storage: 2Gi
       storageClassName: csi-ceph-ssd-me1
