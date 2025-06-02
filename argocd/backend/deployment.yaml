@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ghcr.io/lets-store-it/backend:latest
+          image: ghcr.io/lets-store-it/backend:50ebe9f
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
